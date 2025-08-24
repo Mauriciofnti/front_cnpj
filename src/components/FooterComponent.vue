@@ -1,7 +1,8 @@
 <template>
     <footer>
         <h5>Desenvolvidor por: 
-            <a href="https://github.com/Mauriciofnti">
+            <a href="https://github.com/Mauriciofnti"
+            target="_blank">
                 Maurício Fantinelli
                 <img src="/images/github-mark.svg" alt="Github Link" height="20px">
             </a>

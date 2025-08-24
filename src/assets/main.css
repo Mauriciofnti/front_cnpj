@@ -1,12 +1,14 @@
 @import './base.css';
 
 :root {
-  --baseBlue: rgb(137, 137, 255);
-  --baseHover: rgb(77, 77, 255);
+  --baseHover: rgb(36, 36, 80);
+  --baseBlue: rgb(77, 77, 255);
   --white: #fff;
   --black: #000;
   --grey: #2b2b2b;
   --greyWhite: #dddbdb;
+  --button: #af46f5;
+  --buttonHover: #9900ff;
 }
 
 #app {
@@ -87,9 +89,10 @@ li {
 }
 
 button, .button {
-    border: none;
+    box-shadow: 2px 2px 2px var(--buttonHover);
+    border: 1px solid var(--buttonHover);
     color: var(--white);
-    background-color: var(--baseBlue);
+    background-color: var(--button);
     outline: none;
     border-radius: 5px;
     padding: 12px 24px;
@@ -99,7 +102,7 @@ button, .button {
 }
 
 button:hover, .button:hover {
-    background-color: var(--baseHover);
+    background-color: var(--buttonHover);
     cursor: pointer;
 }
 

@@ -17,10 +17,12 @@
             />
             <button @click="consultar">Consultar</button>
           </div>
+          <p v-if="loading">Consultando</p>
           <p v-if="erro" class="erro">{{ erro }}</p>
         </div>
         <SearchComponent v-if="resultado" :company="resultado" @close="closeModal" />
       </div>
+
   </main>
 </template>
 
@@ -37,7 +39,8 @@ export default {
       cnpj: '',
       resultado: null,
       erro: '',
-      isValidCNPJ: null, // Estado para validação do CNPJ
+      isValidCNPJ: null,
+      loading: false
     };
   },
   methods: {
@@ -53,11 +56,15 @@ export default {
           return;
         }
         this.isValidCNPJ = true;
+        this.loading = true;
+
         const response = await axios.get(`https://api-consulta-cnpj-c6ve.onrender.com/consulta/${cleanedCNPJ}`);
         this.resultado = response.data;
+        if (this.resultado) this.loading = false;
       } catch (error) {
         this.erro = error.response?.data?.message || 'Erro ao consultar o CNPJ';
         this.isValidCNPJ = false;
+        this.loading = false;
       }
     },
     formatCNPJ() {
@@ -73,7 +80,7 @@ export default {
       this.cnpj = digits;
 
       // Valida o CNPJ em tempo real
-      if (digits.length === 14) {
+      if (digits.length == 14) {
         const valid = validarCNPJ(digits);
         this.isValidCNPJ = valid.valido;
         this.erro = valid.valido ? '' : valid.reason;
@@ -101,6 +108,7 @@ export default {
   align-content: center;
   padding: 20px;
   background: var(--greyWhite);
+  box-shadow: 0 0 5px var(--baseHover);
   border-radius: 8px;
 }
 
@@ -125,16 +133,18 @@ input {
   border-radius: 5px;
   font-size: 16px;
   min-width: 35%;
+  box-shadow: 0 0 2px var(--button);  
 }
 
 input:focus {
-  border-color: var(--baseColorOrange);
+  border-color: var(--baseBlue);
   outline: none;
 }
 
 .erro {
   color: #d32f2f;
-  font-size: 14px;
+  font-size: 17px;
+  font-weight: 600;
   margin-top: 10px;
 }
 

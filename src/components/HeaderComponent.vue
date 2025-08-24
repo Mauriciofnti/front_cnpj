@@ -9,7 +9,7 @@
                     <router-link to="/">Início</router-link>
                 </li>
                 <li>
-                    <router-link to="/Comp">Empresas</router-link>
+                    <router-link to="/Empresas">Empresas</router-link>
                 </li>
             </ul>
         </nav>
