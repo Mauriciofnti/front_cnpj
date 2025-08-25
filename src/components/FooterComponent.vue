@@ -16,6 +16,8 @@ footer {
     text-align: center;
     display: flex;
     gap: 20px;
+    padding: 20px 0px 10px;
     flex-direction: column;
+    background-color: var(--baseBlue);
 }
 </style>

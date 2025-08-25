@@ -26,14 +26,6 @@ header {
     & nav ul {
         display: flex;
         gap: 15px;
-        & li {
-            font-size: 18px;
-            & a {
-                color: var(--white);
-            }
-
-        }
-    }
-    
+    }    
 }
 </style>

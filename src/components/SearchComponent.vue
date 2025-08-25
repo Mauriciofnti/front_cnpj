@@ -286,11 +286,11 @@ h3 {
   width: 100%;
   min-width: 280px;
   border-collapse: collapse;
-  border-radius: 6px;
+  box-shadow: 0 0 3px 1px var(--baseHover);
 }
 
 .info-table th {
-  background: var(--baseBlue);
+  background: var(--baseHover);
   color: white;
   font-size: 17px;
   font-weight: 600;
@@ -303,8 +303,6 @@ h3 {
   font-size: 15px;
   border-bottom: 1px solid #eee;
   width: max-content;
-  border-radius: 5px;
-  border-bottom: 1px solid #000;
 }
 
 .info-table .label {

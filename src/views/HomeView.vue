@@ -1,5 +1,6 @@
 <template>
   <main>
+    <section>
       <div class="consulta">
         <div class="first-sect">
           <h2>Consulta CNPJ</h2>
@@ -16,13 +17,19 @@
               }"
             />
             <button @click="consultar">Consultar</button>
+  
+            <p v-if="erro" class="erro">{{ erro }}</p>
+
+            <div v-if="loading" class="dots">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>            
           </div>
-          <p v-if="loading">Consultando</p>
-          <p v-if="erro" class="erro">{{ erro }}</p>
         </div>
         <SearchComponent v-if="resultado" :company="resultado" @close="closeModal" />
-      </div>
-
+      </div>  
+    </section>
   </main>
 </template>
 
@@ -101,15 +108,18 @@ export default {
 <style scoped>
 .consulta {
   margin: 40px 0;
+  display: flex;
+  justify-content: center;
 }
 
 .first-sect {
   text-align: center;
   align-content: center;
   padding: 20px;
-  background: var(--greyWhite);
-  box-shadow: 0 0 5px var(--baseHover);
+  background: linear-gradient(var(--greyWhite), var(--baseBlue));
+  box-shadow: 0 0 5px var(--baseHover) inset;
   border-radius: 8px;
+  width: 600px;
 }
 
 h2 {
@@ -122,7 +132,7 @@ h2 {
 .input-container {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 40px;
   justify-content: center;
   align-items: center;
 }
