@@ -1,8 +1,8 @@
 @import './base.css';
 
 :root {
-  --baseHover: rgb(36, 36, 80);
-  --baseBlue: rgb(216, 216, 255);
+  --baseBlue: rgb(36, 36, 80);
+  --baseHover: rgb(216, 216, 255);
   --white: #fff;
   --black: #000;
   --grey: #2b2b2b;
@@ -10,14 +10,13 @@
   --button: #deb3fa;
   --buttonHover: #9900ff;
 }
-
 #app {
-    user-select: none;
+    background: linear-gradient(45deg, rgb(0, 0, 0) 10%, var(--baseBlue) );
 }
-
 body, p, span, h1, h2, h3, h4, h5, h6, a, button, input, textarea {
   font-family: "Poppins", sans-serif;
   letter-spacing: 0.5px;
+  color: var(--greyWhite);
 }
 
 main {
@@ -36,7 +35,6 @@ main {
 
 a {
     text-decoration: none !important;
-    color: var(--black);
 }
 
 h1 {
@@ -90,9 +88,8 @@ li {
 }
 
 button, .button {
-    box-shadow: 2px 2px 2px var(--baseHover);
     border: 1px solid var(--baseHover);
-    color: var(--grey);
+    /* color: var(--grey); */
     background-color: var(--baseBlue);
     outline: none;
     border-radius: 5px;
@@ -104,8 +101,9 @@ button, .button {
 
 button:hover, .button:hover {
     background-color: var(--baseHover);
-    color: var(--white);
+    color: var(--black);
     cursor: pointer;
+    border: 1px solid var(--baseBlue);
 }
 
 button:active {

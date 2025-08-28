@@ -1,6 +1,6 @@
 <template>
     <footer>
-        <h5>Desenvolvidor por: 
+        <h5>Desenvolvido por: 
             <a href="https://github.com/Mauriciofnti"
             target="_blank">
                 Maurício Fantinelli
@@ -18,6 +18,9 @@ footer {
     gap: 20px;
     padding: 20px 0px 10px;
     flex-direction: column;
-    background-color: var(--baseBlue);
+    background-color: var(--baseHover);
+    & a, p, h5 {
+        color: var(--black);
+    }
 }
 </style>

@@ -3,7 +3,7 @@
     <section>
       <div class="consulta">
         <div class="first-sect">
-          <h2>Consulta CNPJ</h2>
+          <h2>Consultar CNPJ</h2>
           <div class="input-container">
             <input
               v-model="cnpj"
@@ -17,25 +17,23 @@
               }"
             />
             <button @click="consultar">Consultar</button>
-  
             <p v-if="erro" class="erro">{{ erro }}</p>
-
             <div v-if="loading" class="dots">
               <span></span>
               <span></span>
               <span></span>
-            </div>            
+            </div>
+            <SearchComponent v-if="resultado" :company="resultado" @close="closeModal" />    
           </div>
         </div>
-        <SearchComponent v-if="resultado" :company="resultado" @close="closeModal" />
-      </div>  
+      </div>
     </section>
   </main>
 </template>
 
 <script>
-import axios from 'axios';
-import { validarCNPJ } from '../utils/script';
+import { consultarCNPJ } from '../utils/api';
+import { validarCNPJ } from '../utils/formaterValidator';
 import SearchComponent from '../components/SearchComponent.vue';
 
 export default {
@@ -53,40 +51,23 @@ export default {
   methods: {
     async consultar() {
       this.resultado = null;
-      this.erro = '';
-      try {
-        const cleanedCNPJ = this.cnpj.replace(/[^\d]/g, '');
-        const valid = validarCNPJ(cleanedCNPJ);
-        if (!valid.valido) {
-          this.erro = valid.reason;
-          this.isValidCNPJ = false;
-          return;
-        }
-        this.isValidCNPJ = true;
-        this.loading = true;
-
-        const response = await axios.get(`https://api-consulta-cnpj-c6ve.onrender.com/consulta/${cleanedCNPJ}`);
-        this.resultado = response.data;
-        if (this.resultado) this.loading = false;
-      } catch (error) {
-        this.erro = error.response?.data?.message || 'Erro ao consultar o CNPJ';
-        this.isValidCNPJ = false;
-        this.loading = false;
+      const result = await consultarCNPJ(
+        this.cnpj,
+        (value) => (this.loading = value),
+        (value) => (this.erro = value),
+        (value) => (this.isValidCNPJ = value)
+      );
+      if (result) {
+        this.resultado = result;
       }
     },
     formatCNPJ() {
-      // Remove tudo que não for número
       let digits = this.cnpj.replace(/\D/g, '');
-
-      // Aplica a máscara de CNPJ (00.000.000/0000-00)
       if (digits.length > 2) digits = digits.replace(/^(\d{2})(\d)/, '$1.$2');
       if (digits.length > 5) digits = digits.replace(/^(\d{2})\.(\d{3})(\d)/, '$1.$2.$3');
       if (digits.length > 8) digits = digits.replace(/\.(\d{3})(\d)/, '.$1/$2');
       if (digits.length > 12) digits = digits.replace(/(\d{4})(\d)/, '$1-$2');
-
       this.cnpj = digits;
-
-      // Valida o CNPJ em tempo real
       if (digits.length == 14) {
         const valid = validarCNPJ(digits);
         this.isValidCNPJ = valid.valido;
@@ -116,16 +97,15 @@ export default {
   text-align: center;
   align-content: center;
   padding: 20px;
-  background: linear-gradient(var(--greyWhite), var(--baseBlue));
   box-shadow: 0 0 5px var(--baseHover) inset;
   border-radius: 8px;
   width: 600px;
+  background: var(--baseBlue);
 }
 
 h2 {
   font-size: 28px;
   font-weight: 700;
-  color: #333;
   margin-bottom: 20px;
 }
 
@@ -143,19 +123,21 @@ input {
   border-radius: 5px;
   font-size: 16px;
   min-width: 35%;
-  box-shadow: 0 0 2px var(--button);  
+  box-shadow: 0 0 2px 2px var(--baseHover);
+  transition: all .1s ease;
+  color: var(--black);
 }
 
-input:focus {
-  border-color: var(--baseBlue);
+input:focus, input:active {
+  box-shadow: 0 0 4px 4px var(--baseHover);
   outline: none;
 }
 
 .erro {
   color: #d32f2f;
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 600;
-  margin-top: 10px;
+  position: absolute;
 }
 
 @media (max-width: 768px) {

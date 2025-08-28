@@ -243,6 +243,8 @@ export default {
   justify-content: center;
   align-items: center;
   z-index: 1000;
+  user-select: none;
+  color: #000;
 }
 
 .result-container {
@@ -290,7 +292,7 @@ h3 {
 }
 
 .info-table th {
-  background: var(--baseHover);
+  background: var(--baseBlue);
   color: white;
   font-size: 17px;
   font-weight: 600;
@@ -301,7 +303,7 @@ h3 {
 .info-table td {
   padding: 10px;
   font-size: 15px;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #000;
   width: max-content;
 }
 

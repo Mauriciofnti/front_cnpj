@@ -21,11 +21,15 @@ header {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    background-color: var(--baseBlue);
-    box-shadow: 2px 2px 2px var(--baseHover);
+    background-color: var(--baseHover);
+    box-shadow: 2px 2px 2px var(--baseBlue);
     & nav ul {
         display: flex;
         gap: 15px;
+        & a {
+            color: var(--black);
+        }
+
     }    
 }
 </style>
