@@ -1,7 +1,7 @@
 <template>
     <header>
         <router-link to="/">
-            <img src="/images/logo-banner.png" alt="" height="60px">
+            <img src="/images/logo-white.svg" alt="" height="60px">
         </router-link>
         <nav>
             <ul>
@@ -21,13 +21,13 @@ header {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    background-color: var(--baseHover);
-    box-shadow: 2px 2px 2px var(--baseBlue);
+    background-color: var(--baseBlue);
+    box-shadow: 0 1px 3px var(--baseHover);
     & nav ul {
         display: flex;
         gap: 15px;
         & a {
-            color: var(--black);
+            color: var(--white);
         }
 
     }    

@@ -97,7 +97,7 @@ export default {
   text-align: center;
   align-content: center;
   padding: 20px;
-  box-shadow: 0 0 5px var(--baseHover) inset;
+  border: 1px double var(--baseHover);
   border-radius: 8px;
   width: 600px;
   background: var(--baseBlue);
@@ -123,7 +123,6 @@ input {
   border-radius: 5px;
   font-size: 16px;
   min-width: 35%;
-  box-shadow: 0 0 2px 2px var(--baseHover);
   transition: all .1s ease;
   color: var(--black);
 }
